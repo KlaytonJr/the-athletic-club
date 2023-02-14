@@ -59,6 +59,8 @@ Branches created after the 4 hour mark will not be accepted.  However, partial c
 ## Ready to begin?
 Once you have the application running, let us know you are ready to begin.  You will be sent a link to a website containing the tickets.
 
+https://frontend-candidate-assesment-tickets.vercel.app/
+
 ## Completion
 
 Let us know you are finished.  You will be contacted after our team has reviewed your work.

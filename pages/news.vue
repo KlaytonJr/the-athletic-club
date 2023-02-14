@@ -5,6 +5,7 @@
     <article
       v-for="post in posts"
       class="flex flex-col gap-2 w-full max-w-[600px] border border-1 rounded-lg border-opacity-50 border-white p-8"
+      :key="post.id"
     >
       <h1 class="font-bold text-2xl uppercase leading-loose">
         {{ post.title }}
@@ -25,8 +26,17 @@ const posts = ref([]);
 
 const getPosts = async () => {
   const response = await $fetch(`${baseUrl}?limit=5&skip=${skip.value}`);
-  posts.value = response.posts;
+  posts.value = posts.value.concat(response.posts);
 };
 
 onMounted(getPosts);
+
+const onReachEnd = ({ target }) => {
+    if (target.documentElement.scrollTop + window.innerHeight >= document.body.scrollHeight - 800) {
+        skip.value++;
+        getPosts();
+    }
+};
+onMounted(() => window.addEventListener('scroll', onReachEnd));
+onUnmounted(() => window.removeEventListener('scroll', onReachEnd));
 </script>
